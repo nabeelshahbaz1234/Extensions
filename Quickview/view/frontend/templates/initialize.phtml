@@ -1,0 +1,23 @@
+<?php
+// @codingStandardsIgnoreFile
+/** @var $block Initialize */
+
+/** @var Escaper $escaper */
+
+use Magento\Framework\Escaper;
+use RLTSquare\Quickview\Block\Initialize;
+
+?>
+<div data-rltsquare-js="js-init">
+    <script type="text/x-magento-init">
+        {
+            "[data-rltsquare-js='quickview-item-default']": {
+                "rltsquareQuickViewDefault": {
+                   "baseUrl": "<?= $escaper->escapeHtml($block->getConfig()['baseUrl']); ?>"
+                }
+            }
+        }
+
+
+    </script>
+</div>

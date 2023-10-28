@@ -1,0 +1,29 @@
+{
+  "name": "rltsquare/featured-products",
+  "description": "This extension allows merchants to display the featured products and boost the sale of their store by highlighting the most amazing products in their store."
+,
+  "require": {
+    "php": "~7.0.3|~7.4.0|~8.1"
+  },
+  "type":"magento2-module",
+  "version": "1.0.3",
+  "license":[
+    "proprietary"
+  ],
+  "authors":[
+    {
+      "name" : "Ali",
+      "email" : "ali.riaz@rltsquare.com",
+      "homepage" : "https://www.rltsquare.com",
+      "role" : "Developer"
+    }
+  ],
+  "autoload":{
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "RLTSquare\\FeaturedProducts\\" : ""
+    }
+  }
+}

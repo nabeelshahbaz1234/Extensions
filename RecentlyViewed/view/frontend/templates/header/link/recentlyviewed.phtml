@@ -1,0 +1,10 @@
+<?php
+/*** @var $block Customer */
+
+use Magento\Customer\Block\Account\Customer;
+
+?>
+<?php if ($block->customerLoggedIn()): ?>
+    <li><a href="<?= $this->getBaseUrl().'recentlyviewed/viewed'?>"><?= __('Recently Viewed')?></a></li>
+<?php endif; ?>
+

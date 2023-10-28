@@ -1,0 +1,206 @@
+<?php /*** @var Viewed $block */
+/**
+ *
+ * @var Escaper $escaper
+ */
+use Magento\Framework\Escaper;
+use Magento\Framework\App\ActionInterface;
+use RLTSquare\RecentlyViewed\Block\Viewed; ?>
+<div id="recently-viewed" style="position: relative">
+    <?php /*** @var Viewed $block */ ?>
+    <?php if ($block->getCustomerIsLoggedIn()): ?>
+        <?php if ($block->isEnableDisable()): ?>
+            <?php $collection = $block->getCollection();
+            $listProduct = $block->getListProduct();
+            $iterator = 1;
+            $image = 'category_page_grid';
+            $pos = $block->getPositioned();
+            $_helper = $block->getCatalogHelper();
+            $config = $block->getWidgetCfg();
+            $showCart = 1;
+            $showCompare = 0;
+            $showWishlist = 1;
+            $showReview = 1;
+            $viewMode = 'grid';
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            if(empty($pos)) {$pos = 1;}
+            ?>
+            <?php if ($collection->getData()): ?>
+            <div class="products wrapper most_viewed-wrapper custom_grid-wrapper content-products tabproduct-right"
+                 id="recently-viewed">
+                <div class="block-title-tabs">
+                    <h3 class="title item"><?= __('Recently Viewed') ?></h3>
+                    <ul class="magictabs toggle-content">
+                        <li class="item ">
+                            <a href="<?php echo $block->getUrl('recentlyviewed/viewed') ?>" class="clear-all title">View
+                                All</a>
+                        </li>
+                    </ul>
+                </div>
+                <ol class="products list items product-items history slider">
+                    <?php foreach ($collection as $data) { ?>
+                        <?php $product_id = $data->getProductId(); ?>
+                        <?php $_product = $block->getLoadProduct($product_id); ?>
+                        <?php if ($_product->getID()) : ?>
+                            <?php /* @escapeNotVerified */ ?>
+                            <?php echo ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                            <div class="product-item-info per-product" data-container="product-grid">
+                                <?php $productImage = $listProduct->getImage($_product, $image); ?>
+                                <?php if ($pos != null): ?>
+                                    <?php $position = ' style="left:' . $productImage->getWidth() . 'px;' . 'top:' . $productImage->getHeight() . 'px;"'; ?>
+                                <?php endif; ?>
+                                <div class="images-container">
+                                    <?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
+                                    <div class="product-hover">
+                                        <a href="<?php /* @escapeNotVerified */
+                                        echo $_product->getProductUrl() ?>" class="product photo product-item-photo"
+                                           tabindex="-1">
+                                            <?php echo $block->getLazyLoadedImage($productImage); ?>
+                                        </a>
+                                    </div>
+                                    <?php if ($showCart): ?>
+                                        <div class="actions-primary actions-cart alotheme-tooltip"<?php echo strpos($pos, $viewMode . '-primary') ? $position : ''; ?>>
+                                            <?php if ($_product->isSaleable()): ?>
+                                                <?php $postParams = $listProduct->getAddToCartPostParams($_product); ?>
+                                                <form data-role="tocart-form"
+                                                      action="<?php echo $postParams['action']; ?>" method="post">
+                                                    <input type="hidden" name="product"
+                                                           value="<?php echo $postParams['data']['product']; ?>">
+                                                    <input type="hidden"
+                                                           name="<?php echo ActionInterface::PARAM_NAME_URL_ENCODED; ?>"
+                                                           value="<?php echo $postParams['data'][ActionInterface::PARAM_NAME_URL_ENCODED]; ?>">
+                                                    <input type="hidden" name="form_key"
+                                                           value="<?php echo $block->getFormKey(); ?>"/>
+                                                    <?php echo $block->getBlockHtml('formkey'); ?>
+                                                    <button type="submit"
+                                                            title="<?php echo $escaper->escapeHtml(__('Add to Cart')); ?>"
+                                                            class="action tocart primary button btn-cart">
+                                                        <span class="tooltip"><?php echo __('Add to Cart') ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <?php if ($_product->getIsSalable()): ?>
+                                                    <div class="stock available"><span><?php /* @escapeNotVerified */
+                                                            echo __('In stock') ?></span></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><span><?php /* @escapeNotVerified */
+                                                            echo __('Out of stock') ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="product details product-item-details products-textlink clearfix">
+                                        <div class="price-box price-final_price">
+                                    <span class="price-container price-final_price ">
+                                        <span class="price-wrapper ">
+                                            <span class="price">
+                                                 <span class="mr-3">$</span><?php echo number_format((float)$_product->getPriceInfo()->getPrice('final_price')->getAmount()->getBaseAmount(), 2, '.', ''); ?>
+                                            </span>
+                                        </span>
+                                    </span>
+                                        </div>
+                                        <?php if ($showWishlist || $showCompare || $showCart): ?>
+                                            <div class="hover-box clearfix">
+                                                <div class="product actions clearfix"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
+                                                    <?php if ($showWishlist || $showCompare): ?>
+                                                        <div data-role="add-to-links"
+                                                             class="actions-secondary add-to-links"<?php echo strpos($pos, $viewMode . '-secondary') ? $position : ''; ?>>
+                                                            <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+                                                                <a href="#" class="action towishlist alotheme-tooltip"
+                                                                   title="<?php echo $escaper->escapeHtml(__('Add to Wish List')); ?>"
+                                                                   aria-label="<?php echo $escaper->escapeHtml(__('Add to Wish List')); ?>"
+                                                                   data-post='<?php /* @escapeNotVerified */
+                                                                   echo $block->getAddToWishlistParams($_product); ?>'
+                                                                   data-action="add-to-wishlist"
+                                                                   role="button">
+                                                                    <i class="fa fa-heart icon icons"></i>
+                                                                </a>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                        <h4 class="product-name product-item-name">
+                                            <a class="product-item-link" href="<?php /* @escapeNotVerified */
+                                            echo $_product->getProductUrl() ?>"
+                                               title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                                                <?php /* @escapeNotVerified */
+                                                echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                                            </a>
+                                        </h4>
+                                        <?php echo $showReview ? $block->getReviewsSummaryHtml($_product, $templateType) : ''; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php echo ($iterator == count($collection) + 1) ? '</li>' : '' ?>
+                        <?php endif; ?>
+                    <?php } ?>
+                </ol>
+            </div>
+        <?php endif; ?>
+        <?php if (!$listProduct->isRedirectToCartEnabled()) : ?>
+            <script type="text/x-magento-init">
+    {
+        "#recently-viewed [data-role=tocart-form], .form.map.checkout": {
+            "catalogAddToCart": {}
+        }
+    }
+
+
+            </script>
+        <?php endif; ?>
+            <script>
+                // define is used to register a module in require js
+                require(['jquery', 'slick'], function ($) {
+                    //your js code here
+                    jQuery(function () {
+                        if (!$('.history').hasClass('slick-initialized')) {
+                            $(".history").slick({
+                                dots: false,
+                                infinite: true,
+                                slidesToShow: 6,
+                                slidesToScroll: 1,
+                                arrows: true,
+                                autoplay: false,
+                                draggable: true,
+                                speed: 300,
+                                responsive: [
+                                    {
+                                        breakpoint: 1199,
+                                        settings: {
+                                            slidesToShow: 4
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 991,
+                                        settings: {
+                                            slidesToShow: 3
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 639,
+                                        settings: {
+                                            slidesToShow: 2
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 360,
+                                        settings: {
+                                            slidesToShow: 2
+                                        }
+                                    }
+                                ]
+                            });
+                            $(".lazy").slick({
+                                lazyLoad: 'ondemand', // ondemand progressive anticipated
+                                infinite: true
+                            });
+                        }
+                    });
+                });
+            </script>
+        <?php endif; ?>
+    <?php endif; ?>
+
+</div>

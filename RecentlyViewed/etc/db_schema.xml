@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="rltsquare_recently_viewed" resource="default" engine="innodb" comment="RLTSqaure Recent Review">
+        <column xsi:type="int" name="index_id" unsigned="true" nullable="false" identity="true" comment="Index ID"/>
+        <column xsi:type="int" name="customer_id" nullable="true" comment="Customer ID"/>
+        <column xsi:type="int" name="product_id" nullable="false" comment="Product ID"/>
+        <column xsi:type="int" name="store_id" nullable="false" comment="Store ID"/>
+        <column xsi:type="timestamp" name="added_at" nullable="false" comment="Added At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="index_id"/>
+        </constraint>
+    </table>
+</schema>

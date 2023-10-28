@@ -1,0 +1,29 @@
+{
+  "name": "rltsquare/discountfilter",
+  "description": "This extension allows merchants to quickly add discounts to the products and make it easier for the customers to search for them as customers always prefer special offers."
+,
+  "require": {
+    "php": "~7.0.3|~7.4.0|~8.1"
+  },
+  "type":"magento2-module",
+  "version": "1.0.3",
+  "license":[
+    "proprietary"
+  ],
+  "authors":[
+    {
+      "name" : "Ali",
+      "email" : "ali.riaz@rltsquare.com",
+      "homepage" : "https://www.rltsquare.com",
+      "role" : "Developer"
+    }
+  ],
+  "autoload":{
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "RLTSquare\\DiscountFilter\\" : ""
+    }
+  }
+}

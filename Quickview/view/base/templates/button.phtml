@@ -1,0 +1,39 @@
+<?php // @codingStandardsIgnoreFile ?>
+<?php
+/** @var Product $product */
+/** @var QuickViewButton $block */
+/** @var  Escaper $escaper */
+
+use Magento\Catalog\Model\Product;
+use Magento\Framework\Escaper;
+use RLTSquare\Quickview\Block\QuickViewButton;
+
+$product = $block->getProduct();
+$status = $block->CheckEnableDisable();
+$productId = $block->getProduct()->getId();
+$key = $product->getTypeId() . '-' . $productId;
+?>
+<?php if ($status == 1): ?>
+<div class="rltsquare-quickview-container
+            rltsquare-quickview-container-<?= $escaper->escapeHtml($key); ?>
+            rltsquare-quickview-for-<?= $escaper->escapeHtml($productId); ?>"
+     style="display: none;"
+     data-mage-init='{"RLTSquare_Quickview/js/initQuickView":{
+         "mode": "cat",
+         "isAdminArea": "<?= /* @noEscape */
+     $block->isAdminArea(); ?>",
+         "config": <?= /* @noEscape */
+     $block->getJsonConfig(); ?>,
+         "productId": "<?= $escaper->escapeHtml($productId); ?>",
+         "selector": "<?= $escaper->escapeHtml('.rltsquare-quickview-container-' . $key); ?>"
+     }}'>
+
+    <div class="quickview rltsquare-quickview rltsquare-quickview-text"
+         data-quickview-url="<?= /* @escapeNotVerified */
+         $block->getUrl('rltsquare_quickview/catalog_product/view', ['id' => $product->getId()]) ?>"
+         data-rltsquare-js="quickview-item-default">
+        <?= /* @escapeNotVerified */
+        __("Quick View") ?>
+    </div>
+</div>
+<?php endif; ?>

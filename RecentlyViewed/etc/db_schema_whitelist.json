@@ -1,0 +1,14 @@
+{
+    "rltsquare_recently_viewed": {
+        "column": {
+            "index_id": true,
+            "customer_id": true,
+            "product_id": true,
+            "store_id": true,
+            "added_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

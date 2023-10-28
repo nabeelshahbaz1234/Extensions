@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="RLTSquare_Core::rltsquare" title="RLTSquare" module="RLTSquare_Core"
+             sortOrder="51" resource="RLTSquare_Core::rltsquare"/>
+    </menu>
+</config>

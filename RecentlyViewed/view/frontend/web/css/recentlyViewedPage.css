@@ -1,0 +1,18 @@
+.rlts-recently-viewed ol li.product-item {
+    float: left;
+    width: 20%;
+    min-height: 550px;
+    margin-bottom: 30px;
+}
+
+.rlts-recently-viewed .product-item-info {
+    width: 100%;
+}
+
+.rlts-recently-viewed .product-item .tocart {
+    margin-top: 10px;
+}
+
+ul.magictabs.toggle-content {
+    float: right;
+}

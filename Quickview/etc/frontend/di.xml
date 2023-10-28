@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="RLTSquare_Quickview::list_product"
+                type="RLTSquare\Quickview\Plugin\Catalog\Product\ListProductPlugin"/>
+    </type>
+
+    <type name="Magento\CatalogWidget\Block\Product\ProductsList">
+        <plugin name="RLTSquare_Quickview::catalog_widget"
+                type="RLTSquare\Quickview\Plugin\Catalog\Product\ListProductPlugin"/>
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\AbstractProduct">
+        <plugin name="RLTSquare_Quickview::redirect_to_cart_config"
+                type="RLTSquare\Quickview\Plugin\AbstractProductPlugin"/>
+    </type>
+
+    <type name="Magento\Framework\App\Config\ScopeConfigInterface">
+        <plugin name="RLTSquare_Quickview::prevent_pop_up_after_add_cart"
+                type="RLTSquare\Quickview\Plugin\ScopeConfigPlugin"/>
+    </type>
+
+    <type name="Magento\Checkout\Controller\Cart\Add">
+        <plugin name="RLTSquare_Quickview::add_cart_from_pop_up" type="RLTSquare\Quickview\Plugin\CartAddPlugin"/>
+    </type>
+
+    <type name="Magento\Framework\View\Page\Config\Structure">
+        <plugin name="RLTSquare_Quickview::remove_asset_if_disabled"
+                type="RLTSquare\Quickview\Plugin\PageConfigStructurePlugin"/>
+    </type>
+
+    <type name="Magento\Framework\View\Result\Page">
+        <plugin name="RLTSquare_Quickview::add_handle_resultpage" type="RLTSquare\Quickview\Plugin\ResultPagePlugin"/>
+    </type>
+</config>

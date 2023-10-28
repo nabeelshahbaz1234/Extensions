@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+ * NOTICE OF LICENSE
+ * You may not sell, distribute, sub-license, rent, lease or lend complete or portion of software to anyone.
+ *
+ * DISCLAIMER
+ * Do not edit or add to this file if you wish to upgrade to newer
+ * versions in the future.
+ *
+ * @package   RLTSquare_FeaturedProducts
+ * @copyright Copyright (c) 2022 RLTSquare (https://www.rltsquare.com)
+ * @contacts  support@rltsquare.com
+ * @license  See the LICENSE.md file in module root directory
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="RLTSquare_FeaturedProducts::css/slick.css"/>
+        <css src="RLTSquare_FeaturedProducts::css/slick-theme.css"/>
+        <css src="RLTSquare_FeaturedProducts::css/custom-slick.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="RLTSquare\FeaturedProducts\Block\Products" name="featured-products" template="RLTSquare_FeaturedProducts::viewed.phtml" after="-" />
+        </referenceContainer>
+    </body>
+</page>

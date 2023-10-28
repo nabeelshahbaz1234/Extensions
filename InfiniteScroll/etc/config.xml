@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rltsquare_infinitescroll>
+            <general>
+                <enabled>0</enabled>
+                <delay>500</delay>
+                <content>.main</content>
+                <pagination>.pages-items, .pager__list</pagination>
+                <next>.next</next>
+                <item>.product-item</item>
+                <loading_image/>
+                <loading_text><![CDATA[Loading more items...]]></loading_text>
+                <done_text><![CDATA[You've reached the end of list.]]></done_text>
+                <load_more>2</load_more>
+                <load_more_text>Load more...</load_more_text>
+            </general>
+        </rltsquare_infinitescroll>
+    </default>
+</config>

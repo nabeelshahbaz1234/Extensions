@@ -1,0 +1,28 @@
+{
+  "name": "rltsquare/recently-viewed",
+  "description": "Magento 2 extension allows merchants to retain the browsing history of each logged in users to keep an eye on the products they visited lately and save to watch later.",
+  "require": {
+    "php": "~7.0.3|~7.4.0|~8.1"
+  },
+  "type":"magento2-module",
+  "version": "1.0.11",
+  "license":[
+    "proprietary"
+  ],
+  "authors":[
+    {
+      "name" : "Ali",
+      "email" : "ali.riaz@rltsquare.com",
+      "homepage" : "https://www.rltsquare.com",
+      "role" : "Developer"
+    }
+  ],
+  "autoload":{
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "RLTSquare\\RecentlyViewed\\" : ""
+    }
+  }
+}
